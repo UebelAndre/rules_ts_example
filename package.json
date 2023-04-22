@@ -1,0 +1,13 @@
+{
+  "author": "andre",
+  "engines": {
+    "node": ">=10.9.0",
+    "npm": ">=6.2.0"
+  },
+  "name": "rules_ts_example",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "typescript": "4.9.4"
+  }
+}

@@ -1,0 +1,30 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages()
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+)
+
+ts_project(
+    name = "foo_ts",
+    srcs = glob(
+        include = ["src/**/*.tsx"],
+        exclude = ["src/**/*.test.ts"],
+    ),
+    declaration = True,
+    incremental = True,
+    preserve_jsx = True,
+    # TODO: There are many issues that seem to only come up from using
+    # workers. These should be reported and links to upstream issues
+    # linked here.
+    resolve_json_module = True,
+    source_map = True,
+    supports_workers = False,
+    tsconfig = ":tsconfig",
+    deps = [
+        ":node_modules",
+    ],
+)
